@@ -571,6 +571,8 @@ Hence, we directly use maybe functor and $binary$ arrow to manipulate the search
 fmap\ binary\ (lookup\ t\ x)
 \]
 
+We can consider there are two worlds in above diagram. The bottom is the world on the earth, threatened by the null reference; the upper is the world in the sky, free from null and safe. With maybe functor, all the legacy programs on the earth, even they are not capable to handle null, can be lift to the sky, to the safe world dominated by the maybe functor.
+
 \begin{mdframed}
 \begin{proof}
 \textbf{Readers can skip the contents in this box} To verify Maybe is a functor, we need check the two conditions about arrow mapping:
