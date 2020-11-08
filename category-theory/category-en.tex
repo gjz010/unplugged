@@ -206,9 +206,9 @@ Together with the first example, the integer additive monoid, we have three mono
 \end{array}
 \]
 
-It means, the unique characters used in a concatenated English string are same as the union result of the character sets for each one; empty string does not contain any characters (thus is an empty set).
+It means, the unique characters used in a concatenated English string are same as the union result of the character sets for each one; empty string does not contain any characters (corresponding to the empty set). This is a strong property named {\em homomorphism} defined in previous chapter.
 
-Next, we define a transform from the character sets monoid to integer additive monoid. For every given character set, we can count how many characters there are. Empty set contains 0 character. We name this operation ``count''.
+Next, we define a transform from the character sets monoid to integer additive monoid. For every given character set, we can count how many characters there are. Empty set contains 0 character. We name this operation ``count''\footnote{Although `count' is not homomorphic, for example: $|\{r, e, d\}| + |\{a, p, l, e\}| = 3 + 4 = 7 \neq |\{r, e, d\} \cup \{a, p, l, e\}| = |\{a, e, d, l, p, r\}| = 6$, it is a valid transform from set to integer.}.
 
 So far, we defined two transforms: ``chars'' and ``count'', let us see how they composite:
 
