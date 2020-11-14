@@ -68,7 +68,7 @@ In Windows, you can install the MSYS for it. In Mac OS X, please install the dev
 $ xcode-select --install
 ```
 
-### Build the book PDF
+### Build the PDF book
 
 enter the folder contains the book TeX manuscript, run
 
