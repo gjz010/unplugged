@@ -43,7 +43,7 @@ $ sudo ./install-tl -gui text -repository http://mirror.ctan.org/systems/texlive
 
 In Windows, TeXLive provide a [gui based installer](https://tug.org/texlive/), in Mac OS X, there's a [MacTeX](https://www.tug.org/mactex/).
 
-### Cusotmize font (Optional)
+### Customize font (Optional)
 
 If the host system fonts are available, e.g. under VM. they
 could be imported as the following example:
