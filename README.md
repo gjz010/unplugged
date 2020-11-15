@@ -43,7 +43,7 @@ $ sudo ./install-tl -gui text -repository http://mirror.ctan.org/systems/texlive
 
 In Windows, TeXLive provide a [gui based installer](https://tug.org/texlive/), in Mac OS X, there's a [MacTeX](https://www.tug.org/mactex/).
 
-### Cusotmize font (Optional)
+### Customize font (Optional)
 
 If the host system fonts are available, e.g. under VM. they
 could be imported as the following example:
@@ -68,7 +68,7 @@ In Windows, you can install the MSYS for it. In Mac OS X, please install the dev
 $ xcode-select --install
 ```
 
-### Build the book PDF
+### Build the PDF book
 
 enter the folder contains the book TeX manuscript, run
 
