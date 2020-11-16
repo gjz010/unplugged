@@ -232,12 +232,12 @@ To find the greatest common measure of two given commensurable magnitudes.
 The solution Euclid gave only uses recursion and subtraction. It means the greatest common measure can be solved only with ruler and compass essentially. This algorithm can be formalized as the following\footnote{Term `gcm' is the abbreviation for the greatest common measure. When $a$ and $b$ are integers, we often use `gcd' as the abbreviation for the greatest common divisor.}.
 
 \be
-gcm(a, b) = \left \{
+\gcm(a, b) = \left \{
   \begin{array}
   {r@{\quad:\quad}l}
   a = b & a \\
-  b < a & gcm(a - b, b) \\
-  a < b & gcm(a, b - a)
+  b < a & \gcm(a - b, b) \\
+  a < b & \gcm(a, b - a)
   \end{array}
 \right.
 \label{eq:gcm-minus}
@@ -278,30 +278,30 @@ Suppose segement $a$ and $b$ are comensurable. If they are equal, then either on
 
 \begin{tabular}{|l|l|l|}
 \hline
-$gcm(a, b)$ & $a$ & $b$ \\
+$\gcm(a, b)$ & $a$ & $b$ \\
 \hhline{|=|=|=|}
-$gcm(42, 30)$ & 42 & 30 \\
+$\gcm(42, 30)$ & 42 & 30 \\
 \hline
-$gcm(12, 30)$ & 12 & 30 \\
+$\gcm(12, 30)$ & 12 & 30 \\
 \hline
-$gcm(12, 18)$ & 12 & 18 \\
+$\gcm(12, 18)$ & 12 & 18 \\
 \hline
-$gcm(12, 6)$ & 12 & 6 \\
+$\gcm(12, 6)$ & 12 & 6 \\
 \hline
-$gcm(6, 6)$ & 6 & 6 \\
+$\gcm(6, 6)$ & 6 & 6 \\
 \hline
 \end{tabular}
 
 \vspace{5mm}
 
-Repeatedly subtracting $b$ from $a$ to get $a'$, it's exactly the definition of division with remainder: $a' = a - \lfloor a / b \rfloor b$, or denoted as $a'= a \bmod b$. We can use the division with remainder to replace the repeated subtraction in the origin Euclidean algorithm. Besides that, when one magnitude is an integer multiple of the other, for example $b \leq a$ and $a$ can be divided by $b$, we know the greatest common measure is $b$. As the remainder $a \bmod b = 0$, we define $gcm(0, b) = gcm(b, 0) = b$. We can compare $a$ and $b$ first, then exchange them if $a < b$. As we know $a \bmod b$ must be less than $b$, when recursively compute the next time, we can directly exchange them as $gcm(b, a \bmod b)$. This gives the improved Euclidean algorithm.
+Repeatedly subtracting $b$ from $a$ to get $a'$, it's exactly the definition of division with remainder: $a' = a - \lfloor a / b \rfloor b$, or denoted as $a'= a \bmod b$. We can use the division with remainder to replace the repeated subtraction in the origin Euclidean algorithm. Besides that, when one magnitude is an integer multiple of the other, for example $b \leq a$ and $a$ can be divided by $b$, we know the greatest common measure is $b$. As the remainder $a \bmod b = 0$, we define $\gcm(0, b) = \gcm(b, 0) = b$. We can compare $a$ and $b$ first, then exchange them if $a < b$. As we know $a \bmod b$ must be less than $b$, when recursively compute the next time, we can directly exchange them as $\gcm(b, a \bmod b)$. This gives the improved Euclidean algorithm.
 
 \be
-gcm(a, b) = \left \{
+\gcm(a, b) = \left \{
   \begin{array}
   {r@{\quad:\quad}l}
   b = 0 & a\\
-  \text{otherwise} & gcm(b, a \bmod b) \\
+  \text{otherwise} & \gcm(b, a \bmod b) \\
   \end{array}
 \right.
 \label{eq:gcm}
@@ -328,7 +328,7 @@ The next step is to prove, for any common measure $c$ for $a$ and $b$, it measur
 Combine the results from step one and two, that $r_{n-1} \leq g$ and $g \leq r_{n-1}$, we deduce the greatest common measure $g = r_{n-1}$. It does not only prove the correctness of Euclidean algorithm, but also tells us $g$ is the greatest common measure for every pair of magnitudes:
 
 \be
-g = gcm(a, b) = gcm(b, r_0) = ... = gcm(r_{n-2}, r_{n-1}) = r_{n-1}
+g = \gcm(a, b) = \gcm(b, r_0) = ... = \gcm(r_{n-2}, r_{n-1}) = r_{n-1}
 \label{eq:recursive-gcm}
 \ee
 
@@ -400,8 +400,8 @@ We can deduce the extended Euclid algorithm with Bézout's idendity.
 
 \[
 \begin{array}{rlr}
-ax + by & = gcm(a, b) & \text{Bézout's idendity} \\
-        & = gcm(b, r_0) & \text{Euclid algorithm (\ref{eq:recursive-gcm})} \\
+ax + by & = \gcm(a, b) & \text{Bézout's idendity} \\
+        & = \gcm(b, r_0) & \text{Euclid algorithm (\ref{eq:recursive-gcm})} \\
         & = bx' + r_0 y' & \text{Use Bézout's idendity for $b$ and $r_0$} \\
         & = bx' + (a - bq_0)y' & \text{By $a = b q_0 + r_0$} \\
         & = ay' + b(x' - y'q_0) & \text{As linear combination of $a$ and $b$} \\
@@ -420,16 +420,16 @@ This gives the recursive case:
 \right.
 \]
 
-The edge case happens when $b = 0$, we have $gcm(a, 0) = 1a + 0b$. Combine it with the recursive case, we obtain the extended Euclidean algorithm.
+The edge case happens when $b = 0$, we have $\gcm(a, 0) = 1a + 0b$. Combine it with the recursive case, we obtain the extended Euclidean algorithm.
 
 \be
-gcm_{ex}(a, b) = \left \{
+\gcm_{ex}(a, b) = \left \{
   \begin{array}
   {r@{\quad:\quad}l}
   b = 0 & (a, 1, 0) \\
   \text{otherwise} & \begin{array}{l}
                 (g, y', x' - y' \lfloor a / b \rfloor) \\[2pt]
-                \text{其中}(g, x', y') = gcm_{ex}(b, a \bmod b)
+                \text{其中}(g, x', y') = \gcm_{ex}(b, a \bmod b)
                 \end{array} \\
   \end{array}
 \right.
@@ -474,7 +474,7 @@ a & 3b - 2a & pour from $B$ to $A$ \\
 
 No matter what sequence of operations, the water in the jars can always be expressed as $ax + by$ where $x$ and $y$ are integers. It means the water we get is the linear combination of $a$ and $b$. From the proof of Bézout's identity, we know the smallest positive number of this linear combination is exactly the greatest common measure $g$. We can tell if it is possible to get $c$ gallons of water if and only if $c$ can be measured by $g$\footnote{If and only if $c$ can be devided by the greatest common divisor $g$ for integer capacities.}. We assume $c$ is not greater than the capacity of the bigger jar.
 
-For example, we can't get 5 gallons of water with two jars of 4 gallons and 6 gallons. This is because the greatest common divisor of 4 and 6 is 2. Which can't divide 5. (In other words, we can't get odd galons of water with two jars of even gallons capacities.) If $a$ and $b$ are coprime, i.e. $gcd(a, b) = 1$, then we are sure to be able to get any natural number $c$ gallons of water.
+For example, we can't get 5 gallons of water with two jars of 4 gallons and 6 gallons. This is because the greatest common divisor of 4 and 6 is 2. Which can't divide 5. (In other words, we can't get odd galons of water with two jars of even gallons capacities.) If $a$ and $b$ are coprime, i.e. $\gcd(a, b) = 1$, then we are sure to be able to get any natural number $c$ gallons of water.
 
 Although we can tell that the puzzle is solvable when $g$ measures $c$, we still don't know the detailed steps to pour water. Actually, the steps can be decuded as far as we can find two integers $x$ and $y$, satisfying $ax + by = c$. If $x > 0, y < 0$, it means we need fill jar $A$ $x$ times, and empty jar $B$ $y$ times; Else if $x < 0, y > 0$, we need empty jar $A$ $x$ times, and fill jar $B$ $y$ times.
 
@@ -619,7 +619,7 @@ It's interesting that the incommensurable is defined by checking whether the Euc
 \Question{The Euclidean algorithm described in this section is in recursive manner. Try to eliminate recursion, implement it and the extended Euclidean algorithm only with loop.}
 \Question{Most programming environments require integers for modular operation. However, the length of segment isn't necessarily integer. Implement a modular operation that manipulates segments. What's about its efficiency?}
 \Question{In the proof of Euclidean algorithm, we mentioned ``Remainders are always less than the divisor. We have $b > r_0 > r_1 > r_2 > ... > 0$. As the remainder can not less than zero, and the initial magnitude is finite, the algorithm must terminate.'' Can $r_{n}$ infinitely approximate zero, but not be zero? Does the algorithm always terminate? What does the precondition that $a$ and $b$ are commensurable ensure?}
-\Question{For the binary linear Diophantine equation $ax + by = c$, let $x_1, y_1$ and $x_2, y_2$ be two pairs of solution. Proof that the minimum of $|x_1 - x_2|$ is $b/gcm(a, b)$, and the minimum of $|y_1 - y_2|$ is $a/gcm(a, b)$}
+\Question{For the binary linear Diophantine equation $ax + by = c$, let $x_1, y_1$ and $x_2, y_2$ be two pairs of solution. Proof that the minimum of $|x_1 - x_2|$ is $b/\gcm(a, b)$, and the minimum of $|y_1 - y_2|$ is $a/\gcm(a, b)$}
 \Question{For the regular pentagon with side of 1, how long is the diagonal? Proof that in the pentagram shown in figure \ref{fig:pentagram}, the segment $AC$ and $AG$ are incommensurable. What's their ratio in real number?}
 \end{Exercise}
 
