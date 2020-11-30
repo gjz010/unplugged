@@ -155,6 +155,7 @@
 
 % for literate Haskell code
 \lstdefinestyle{Haskell}{
+  language=Haskell,
   flexiblecolumns=false,
   basewidth={0.5em,0.45em},
   morecomment=[l]--,
@@ -201,13 +202,20 @@
 \newcommand*{\ttfamilywithbold}{\fontfamily{lmtt}\selectfont}
 
 \lstset{
-  basicstyle=\small\ttfamily,
-  commentstyle=\rmfamily,
-  texcl=true,
+  basicstyle = \footnotesize\ttfamilydefault,
+  commentstyle = \normalsize\rmfamily,
+  keywordstyle = \normalsize\ttfamilywithbold\bfseries,
+  texcl = true,
   showstringspaces = false,
-  upquote=true,
-  flexiblecolumns=false
+  upquote = true,
+  flexiblecolumns = false
 }
+
+\lstnewenvironment{Haskell}[1][]
+{\lstset{
+    language = Haskell,
+    style=Haskell,
+    #1}}{}
 
 \newcommand\doubleplus{\ensuremath{\mathbin{+\mkern-10mu+}}}
 %\newcommand\doubleplus{+\kern-1.3ex+\kern0.8ex}

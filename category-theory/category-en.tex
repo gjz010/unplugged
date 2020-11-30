@@ -474,7 +474,7 @@ Below diagram illustrates how $\mathbf{Maybe}$ behaves.
 The left side objects $A$ and $B$ can be data types, like integer, Boolean. While the right side objects are mapped types through functor $\mathbf{Maybe}$. If $A$ represents $Int$, then the right side corresponds to $\mathbf{Maybe}\ Int$, if $B$ represents $Bool$, then the right side corresponds to $\mathbf{Maybe}\ Bool$. How does the maybe functor map objects? that part is defined as:
 
 \lstset{frame=none}
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 data Maybe A = Nothing | Just A
 \end{lstlisting}
 
@@ -647,7 +647,7 @@ Therefore, Maybe is really a functor.
 List functor. We introduced the definition of list in chapter 1 as:
 
 \lstset{frame=none}
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 data List A = Nil | Cons(A, List A)
 \end{lstlisting}
 
@@ -712,7 +712,7 @@ In chapter 1, we introduced the simplified notation, using the infix `:' for $Co
 Compare this definition with the list mapping definition in chapter 1, we find they are exactly same except for the name. It means we can re-use the list mapping to define list functor. This is the case in some programming environment, which re-uses \texttt{map} for list functor.
 
 \lstset{frame=single}
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 instance Functor [] where
     fmap = map
 \end{lstlisting}
@@ -1076,13 +1076,13 @@ of the pair in the category $\pmb{Set}$.
 The detailed proof can be found in the appendix of this book. In program environment, product is often realized with paired tuple $(a, b)$ and functions $fst, snd$. However, coproduct is sometimes realized with a dedicated data type.
 
 \lstset{frame = single}
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 data Either a b = Left a | Right b
 \end{lstlisting}
 
 The advantage is that we needn't the 0, 1 tags to mark if an element $x$ of type \texttt{Either a b} comes from \texttt{a} or \texttt{b}. The below example program handles the coproduct value through pattern matching:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 either :: (a -> c) -> (b -> c) -> Either a b -> c
 either f _ (Left x)     =  f x
 either _ g (Right y)    =  g y
@@ -1556,7 +1556,7 @@ Natural transformation is a higher level of abstraction on top of categories, ar
 The first example is the $inits$ function. It enumerates all the prefixes of a given string or list. For instances:
 
 \lstset{frame=none}
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 inits "Mississippi" = ["","M","Mi","Mis","Miss","Missi","Missis",
         "Mississ","Mississi","Mississip","Mississipp","Mississippi"]
 
@@ -1717,19 +1717,19 @@ Not only for $A$, when abstract {\em all} objects, we obtain a family of arrows 
 In some programming environments, natural transformation can be written as\footnote{There is an \texttt{ExplicitForAll} option in Haskell, we'll see it again in the next chapter about build/foldr fusion law.}:
 
 \lstset{frame=single}
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 phi :: forall a . F a -> G a
 \end{lstlisting}
 
 When we needn't explicitly call out \texttt{forall a}, natural transformation can be simplified as:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 phi : F a -> G a
 \end{lstlisting}
 
 For the two examples above, the type of $inits$ and $safeHead$ are:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 inits :: [a] -> [[a]]
 
 safeHead :: [a] -> Maybe a
@@ -1977,20 +1977,20 @@ The type system in programming environment is the category of set $\pmb{Set}$ es
 
 We can define a dedicated data type, named as ``()'', with only one element, also named as ``()''.
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 data  ()  =  ()
 \end{lstlisting}
 
 It is isomorphic equivalent to any singleton set, hence $\{ \bigstar \} = \{()\}$. We will see the advantage of choosing the ``()'' symbol later. We can define the arrow (total function) from any data type (set) to this final object as below:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 unit :: a -> ()
 unit _ = ()
 \end{lstlisting}
 
 We can also define the final object with any singleton data type, since it is isomorphic equivalent to ()\footnote{Many programming environments, like C++, Java, Scala, etc. support defining singleton object. We can also treat the force type casting as an arrow, then it also forms the final object.}.
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 data Singleton = S
 
 proj :: a -> Singleton
@@ -1999,7 +1999,7 @@ proj _ = S
 
 It looks like a constant function, which maps any value to a constant. However, not all constant functions point to the final object. For example the following two constant functions:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 yes :: a -> Bool
 yes _ = True
 
@@ -2013,27 +2013,27 @@ In the category of sets, the initial object is the empty set $\varnothing$. What
 
 For example, we can declare a data type \texttt{Void}, but leave it without any values:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 data Void
 \end{lstlisting}
 
 Thus \texttt{Void} represents an empty set. However, the initial object must have a unique arrow to any other object. It requires us to define a function from \texttt{Void} to all other data types.
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 absurd :: Void -> a
 absurd _ = undefined
 \end{lstlisting}
 
 The implementation does not matters here, because there does not exist a real argument to call this function. It is quite OK to implement it as this:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 absurd :: Void -> a
 absurd a = case a of {}
 \end{lstlisting}
 
 We can also define the initial object by other means as far as they are isomorphic equivalent. The method is to only declare the type without define any values. For example:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 data Empty
 
 f :: Empty -> a
@@ -2050,7 +2050,7 @@ Here we explicitly define $iso$ and $iso'$ to form the isomorphism between \text
 
 In the category of sets, we define the arrow from the final object to any set as the selection arrow. What does it mean in programming? Set corresponds to type. It means we can select a specific value from any type. The below example selects 0 and 1 from $Int$ type respectively:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 zero :: () -> Int
 zero () = 0
 
@@ -2566,19 +2566,19 @@ We say it defines the $F$-algebra $(M, \alpha)$ of the monoid.
 
 For programming, we can define the type of the F-algebra arrow:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 type Algebra f a = f a -> a
 \end{lstlisting}
 
 It gives an alias to the arrow $\mathbf{F}A \to A$ essentially, named as \texttt{Algebra} $\mathbf{F}, A$. For the monoid, we also need define a functor\footnote{There is a definition of monoid in Haskell standard library (see the appendix of this chapter). However, it is the definition of the monoid algebraic structure, but not the definition of the monoid functor}:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 data MonoidF a = MEmptyF | MAppendF a a
 \end{lstlisting}
 
 When \texttt{a} is string for example, we can implement the arrow of the F-algebra \texttt{(String, evals)} as below:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 evals :: Algebra MonoidF String
 evals MEmpty = e ()
 evals (MAppendF s1 s2) = m s1 s2
@@ -2592,7 +2592,7 @@ m = (++)
 
 We can further simplify it by embedding \texttt{e} and \texttt{m} in \texttt{evals}:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 evals :: Algebra MonoidF String
 evals MEmpty = ""
 evals (MAppendF s1 s2) = s1 ++ s2
@@ -2771,7 +2771,7 @@ Consider a set $A$ furnished with algebraic structure. Use the Fibonacci numbers
 In order to model this {\em kind} of algebraic structure in F-algebra, we need three things: functor, carrier object, and the $\alpha$ arrow. From the Peano axiom, natural number functor should be defined as below:
 
 \lstset{frame=none}
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 data NatF A = ZeroF | SuccF A
 \end{lstlisting}
 
@@ -2788,7 +2788,7 @@ This is a polynomial functor $\mathbf{NatF} A = 1 + A$. Here is an interesting q
 
 It is exactly the type of natural numbers we defined in chapter 1. Let us list \texttt{Nat} and \texttt{NatF A} together:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 data Nat = Zero | Succ Nat
 
 data NatF A = ZeroF | SuccF A
@@ -2814,7 +2814,7 @@ The fixed point of endo-functor $\mathbf{F}$ is $\mathbf{Fix}\ \mathbf{F}$. When
 
 \begin{Exercise}
 \Question{Someone write the natural number like functor as the below recursive form. What do you think about it?
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 data NatF A = ZeroF | SuccF (NatF A)
 \end{lstlisting}
 }
@@ -3005,7 +3005,7 @@ Catamorphism is powerful, it can convert the function $f$ on a non-recursive str
 
 The natural number functor $\mathbf{NatF}$ is not recursive, while the initial algebra for natural number $\mathbf{Nat}$ is recursive:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 data NatF A = ZeroF | SuccF A
 
 data Nat = Zero | Succ Nat
@@ -3129,13 +3129,13 @@ We can define more algebraic data types with initial F-algebra, like list and bi
 The definition of list given in chapter 1 is as below.
 
 \lstset{frame=none}
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 data List A = Nil | Cons A (List A)
 \end{lstlisting}
 
 The corresponding non-recursive functor is:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 data ListF A B = NilF | ConsF A B
 \end{lstlisting}
 
@@ -3200,7 +3200,7 @@ len = cata lenAlg where
 
 Hence $len\ Zero$ gives 0, and $len\ (Cons\ 1\ (Cons\ 1\ Zero))$ gives 2. We can define a helper function to convert the list in bracket symbol to $List$.
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 fromList :: [a] -> List a
 fromList [] = Nil
 fromList (x:xs) = Cons x (fromList xs)
@@ -3210,7 +3210,7 @@ We can chain them together, for example as $len (fromList [1, 1, 2, 3, 5, 8])$ t
 
 Different algebraic rule $f$ gives different computation on list. Below example sums up the elements in a list:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 sum :: (Num a) => (List a) -> a
 sum = cata sumAlg where
   sumAlg :: (Num a) => ListF a a -> a
@@ -3254,13 +3254,13 @@ It tells us, the catamorphism of list F-algebra $\lbb c + f \rbb = foldr(c, f)$.
 In chapter 2, we defined binary tree as below:
 
 \lstset{frame=none}
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 data Tree A = Nil | Br A (Tree A) (Tree A)
 \end{lstlisting}
 
 All the binary tree like structure can be described with F-algebra. First, we need define the binary tree functor:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 data TreeF A B = NilF | BrF A B B
 \end{lstlisting}
 
@@ -3350,13 +3350,13 @@ Therefore, the computation to sum all the elements in a binary tree can be repre
 In this chapter, we introduced the basic concepts in category theory, including category, functor, natural transformation, product and coproduct, initial object and final object, exponentials, and F-algebra. They can construct complex algebraic structures. Before the end of this chapter, let us see how the generic folding operation is realized in the language of category theory\cite{Haskell-foldable}:
 
 \lstset{frame=single}
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 foldr f z t = appEndo (foldMap (Endo . f) t) z
 \end{lstlisting}
 
 The reason why it is defined like this is abstraction, to make $foldr$ not only limit to list, but also expand to any foldable structures. It's common to define the folding operation for list as below:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 foldr :: (a -> b -> b) -> b -> [a] -> b
 foldr f z [] = z
 foldr f z (x:xs) = f x (foldr f z xs)
@@ -3491,7 +3491,7 @@ class  Functor f  where
 
 The Maybe functor:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 instance  Functor Maybe  where
     fmap _ Nothing       = Nothing
     fmap f (Just a)      = Just (f a)
@@ -3510,14 +3510,14 @@ lookupBin = (fmap binary) . lookup
 
 Definition of bifunctor:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 class Bifunctor f where
   bimap :: (a -> c) -> (b -> d) -> f a b -> f c d
 \end{lstlisting}
 
 Definition of product and coproduct functors:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 instance Bifunctor (,) where
   bimap f g (x, y) = (f x, g y)
 
@@ -3528,7 +3528,7 @@ instance Bifunctor Either where
 
 Definition of $curry$ and its reverse $uncurry$:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 curry       :: ((a, b) -> c) -> a -> b -> c
 curry f x y =  f (x, y)
 
@@ -3538,7 +3538,7 @@ uncurry f (x, y) =  f x y
 
 Definition of monoid:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 class Semigroup a => Monoid a where
     mempty  :: a
 
@@ -3551,7 +3551,7 @@ class Semigroup a => Monoid a where
 
 Definition of foldable:
 
-\begin{lstlisting}
+\begin{lstlisting}[style=Haskell]
 newtype Endo a = Endo { appEndo :: a -> a }
 
 class Foldable t where
