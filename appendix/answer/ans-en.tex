@@ -1027,7 +1027,7 @@ x^m x^{n+1} & = & x^m (x x^n) & \text{recursive definition of power} \\
 
 \item {Is the odd-even test function homomorphic between the integer addition group $(Z，+)$ and the Boolean logic-and group $(Bool, \land)$? What about the group of integers without zero under multiplication?}
 
-To test homomorphic, we need verify two things: 1, whether it is surjective; 2, whether $f(a) f (b) = f(a \cdot b)$ holds. Although the odd-even test is surjective, there is a negative case:
+odd-even test function maps every integer to Boolean value true or false. To test homomorphic, we need verify whether $f(a) f (b) = f(a \cdot b)$ holds. However, there is a negative case:
 
 $a, b$ are all odd, i.e. $odd(a) = odd(b) = True$. Their sum is even, $odd(a + b) = False$. However, the logic and result is $odd(a) \land odd(b) = True \neq odd(a + b) = False$.
 
