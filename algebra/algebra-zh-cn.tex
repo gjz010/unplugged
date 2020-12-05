@@ -835,6 +835,18 @@ def kcycles(a):
 
 这样正三角形的每种对称性（3个轴对称、加上2个旋转对称性，以及恒等变换）恰好被对称群$S_3$的每个元素唯一精确描述了。这就是群与对称间的美妙关系。
 
+我们把这些不改变物体大小的变换称为叠合。存在着两种叠合，一种称为真叠合（proper）一种称为非真叠合（improper）。为什么会有这种差别呢？考虑下面图中的两种海螺，左边的那种已经灭绝，它们多在北半球发现，右边的那种多在南半球发现。尽管它们摆在一起如此对称，我们却发现无论怎样旋转、翻转、移动，都无法让左侧的海螺和右侧的完全相合。左侧的海螺是左螺旋的，而右侧的是右螺旋的。两个互为镜像。
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.3]{img/chirality.jpg}
+ %\captionsetup{labelformat=empty}
+ \caption{真叠合与非真叠合}
+ \label{fig:chirality}
+\end{figure}
+
+在现实世界中，我们无法通过运动将左螺旋变成镜子中的右螺旋。这就是真与非真叠合的区别：真叠合不改变螺旋的方向，将左螺旋变为左螺旋，右螺旋变为右螺旋；非真叠合改变螺旋的方向，将左螺旋变为右螺旋，右螺旋变为左螺旋。非真叠合又称为反射\cite{Weyl1952}。对于海螺图中的4点，对称群$S_4$中的变换(2 4)就是一个非真叠合。它将左侧的海螺变换成右侧的。因此对称群既可以描述现实世界，也可以描述镜中世界的对称。
+
 \begin{Exercise}
 对称群$S_4$描述了什么几何形状的哪些对称性？
 \end{Exercise}
@@ -2268,6 +2280,9 @@ Dan Goodman. ``An Introduction to Galois Theory''. \url{https://nrich.maths.org/
 
 \bibitem{MArtin}
 Michael Artin. ``代数（英文版，第二版）''. 机械工业出版社. 2011年12月. ISBN: 9787111367017
+
+\bibitem{Weyl1952}
+赫尔曼 $\cdot$ 外尔 著 冯承天、陆继宗 译. ``对称''. 北京大学出版社. 2018年7月. ISBN: 9787301291719
 
 \end{thebibliography}
 
