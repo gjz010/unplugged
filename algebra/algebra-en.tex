@@ -1,7 +1,6 @@
 \ifx\wholebook\relax \else
 
-\documentclass{article}
-
+\documentclass[b5paper]{article}
 \usepackage[nomarginpar
   %, margin=.5in
 ]{geometry}
@@ -1046,6 +1045,14 @@ If the subset $H$ is finite, then the condition to form a subgroup can be furthe
 \begin{theorem}
 For any group $G$, the finite subset $H$ forms a subgroup if and only if for all $a, b \in H$, $ab \in H$ holds.
 \end{theorem}
+
+For another example, one of the most important subgroup for the symmetric group $S_n$ of $n$ objects, is the {\em alternating group} $A_n$. This subgroup contains all the permutations that when apply to $x_1, x_2, ..., x_n$, the product
+
+\[
+\Delta = \displaystyle \prod_{i < k} (x_i - x_k)
+\]
+
+keeps same. Such permutations are called even permutations. They flip the sign of $\Delta$ even times, hence it is not changed. The rest permutations are odd permutations. The product of two even or odd permutations is still even, while an even one and an odd one gives an odd permutation. There are equal numbers of even and odd permutations, both are $n!/2$.
 
 With integer $n$, we can partition all the integers into residues modulo $n$. Using the similar idea, we can partition the elements in a group. Consider the additive group of integers $Z$, let $H$ be the subset of all multiples of $n$, i.e. $H = \{ kn \}$ where $k = 0, \pm 1, \pm 2, ...$. For any two elements $hn$ and $kn$, $hn + (-k)n = (h - k)n \in H$. While $-kn$ is exactly the inverse of $kn$ in $Z$, and $+$ is the binary operation in additive group of integers. According to the theorem \ref{theorem:subgroup-2}, $H$ is the subgroup of $Z$.
 
