@@ -1,7 +1,6 @@
 \ifx\wholebook\relax \else
 
-\documentclass{article}
-
+\documentclass[b5paper]{ctexart}
 \usepackage[nomarginpar
   %, margin=.5in
 ]{geometry}
@@ -1029,6 +1028,14 @@ a^ha^k = a^{h + k} \to [h + k] = [h] + [k]
 \begin{theorem}
 一个群$G$的非空有限子集$H$构成子群的充分必要条件是。若任意$a, b \in H$，则$ab \in H$。
 \end{theorem}
+
+我们再看一个例子。$n$个对象的全部置换所组成的对称群$S_n$中，一个最重要的子群就是\textbf{交错群}$A_n$。这个子群是由这样一些置换组成的，当把置换应用于$x_1, x_2, ..., x_n$时，函数
+
+\[
+\Delta = \displaystyle \prod_{i < k} (x_i - x_k)
+\]
+
+保持不变。这种置换称为偶置换。它改变$\Delta$的符号偶数次，故而不变。而其余的置换称为奇置换。显然两个偶置换或两个奇置换的积是偶置换，而一奇一偶的积是奇置换。两种置换一样多，都是$n!/2$个。
 
 我们曾经利用一个整数$n$把全体整数分成模$n$的剩余类。我们可以把类似的思路扩展抽象到群上。我们把整数加群叫做$Z$，把所有包含$n$的倍数的集合叫做$H$，即$H = \{ kn \}$，其中$k = 0, \pm 1, \pm 2, ...$。那么对于$H$的任意两个元$hn$和$kn$来说，$hn + (-k)n = (h - k)n \in H$。而$-kn$恰好是$kn$在$Z$中的逆元，并且$+$是整数加群上的二元运算。所以由上述定理\ref{theorem:subgroup-2}，$H$是$Z$的子群。
 
