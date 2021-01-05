@@ -16,3 +16,6 @@ semantic.cache
 *.pdf
 *.eps
 *.pyc
+*.fdb_latexmk
+*.fls
+*.xdv
