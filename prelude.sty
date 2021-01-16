@@ -79,34 +79,7 @@
 \usepackage{mdframed}
 \usepackage{url}
 \usepackage{xeCJK}
-
-% fc-list :mono       % list all mono fonts
-\def\macmonofont{Monaco}
-\def\winmonofont{Consolas}
-\def\linuxmonofont{Courier}
-
-\suppressfontnotfounderror1 % Avoid setting exit code (error level) to break make process
-\count255=\interactionmode
-\batchmode
-
-% mono font
-\let\monoft=\macmonofont
-\font\thefont="\monoft"\space at 10pt
-\ifx\thefont\nullfont
-  \let\monoft=\winmonofont
-  \font\thefont="\monoft"\space at 10pt
-  \ifx\thefont\nullfont
-    \let\monoft=\linuxmonofont
-    \font\thefont="\monoft"\space at 10pt
-    \ifx\thefont\nullfont
-      \errorstopmode
-      \errmessage{no suitable mono font found}
-    \fi
-  \fi
-\fi
-
-\interactionmode=\count255
-\setmonofont[Scale=MatchLowercase]{\monoft}
+\usepackage{sourcecodepro}
 
 \titleformat{\paragraph}
 {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
@@ -126,8 +99,8 @@
   escapeinside={*'}{'*},
   stringstyle=\mdseries\rmfamily,
   keywordstyle=\bfseries\rmfamily,
-  basicstyle=\small\ttfamily, %sffamily
-  commentstyle = \small\rmfamily,
+  basicstyle=\footnotesize\ttfamily, %sffamily
+  commentstyle = \footnotesize\rmfamily,
   showstringspaces=false,
   morecomment=[l]--,
   literate={+}{{$+$}}1 {/}{{$/$}}1 {*}{{$*$}}1 {=}{{$=$}}1
@@ -150,7 +123,7 @@
 
 \lstdefinelanguage{Bourbaki}{
   morekeywords={abstract, case, catch, class,
-    and, or, not, data, void,
+    and, or, not, data, void, to,
     do, else, false, for, if, new, null, return,
     throw, true, try, type, val, var, while, yield },
   otherkeywords={=>,<-,<\%,<:,>:,\#,@},
@@ -171,13 +144,9 @@
 
 \lstloadlanguages{C, C++, Java, Lisp, Haskell, Python, Bourbaki}
 
-\newfontfamily\ttfamilydefault{\monoft}
-\newcommand*{\ttfamilywithbold}{\fontfamily{lmtt}\selectfont}
-
 \lstset{
-  basicstyle = \footnotesize\ttfamilydefault,
+  basicstyle = \footnotesize\ttfamily,
   commentstyle = \normalsize\rmfamily,
-  keywordstyle = \normalsize\ttfamilywithbold\bfseries,
   texcl = true,
   showstringspaces = false,
   upquote = true,
