@@ -2049,7 +2049,7 @@ one () = 1
 f : N^2 \to N
 \]
 
-对于函数$f$，我们能否把$N^2$看成一个对象，而不是两个参数呢？也就是说，看成$f\ (x, y)$，而不是$f(x, y)$。如果把参数看成一个“洞”，则前者是$f\ \bullet$，然后把一个对$(x, y)$填入洞中；而后者是$f(\bullet, \bullet)$，然后分别把$x, y$填入到两个洞中。另一方面，在第二章我们介绍了克里化，可以把$f$看成$f: N \to (N \to N)$，也就是传入$x$后，$f\ x$会返回另一个函数，这个新函数把一个自然数映射到另一个自然数。但使用克里化，我们反而得不到幂的概念了。峰回路转，如果我们把克里化后返回的东西，也就是$N \to N$看成一个事物，比方叫做“函数对象”会怎样呢？$N$是一个无穷集，想起来比较困难。我们后退一步，构造一个简单点的例子——只有两个元素的有限集$Bool$——来分析一下。
+对于函数$f$，我们能否把$N^2$看成一个对象，而不是两个参数呢？也就是说，看成$f\ (x, y)$，而不是$f(x, y)$。如果把参数看成一个“洞”，则前者是$f\ \bullet$，然后把一个对$(x, y)$填入洞中；而后者是$f(\bullet, \bullet)$，然后分别把$x, y$填入到两个洞中。另一方面，在第二章我们介绍了柯里化，可以把$f$看成$f: N \to (N \to N)$，也就是传入$x$后，$f\ x$会返回另一个函数，这个新函数把一个自然数映射到另一个自然数。但使用柯里化，我们反而得不到幂的概念了。峰回路转，如果我们把柯里化后返回的东西，也就是$N \to N$看成一个事物，比方叫做“函数对象”会怎样呢？$N$是一个无穷集，想起来比较困难。我们后退一步，构造一个简单点的例子——只有两个元素的有限集$Bool$——来分析一下。
 
 \begin{example}
 存在无穷多个从$Bool$到$Int$的函数（箭头）组成的集合$\{Bool \arrowto{f} Int\}$，我们从这个集合中挑选一个元素，也就是一个例子函数来看看：
@@ -2110,7 +2110,7 @@ isDigit 'b' = False
 虽然这个实现比较的笨拙，但是它反映了一个事实：如果$Char$中有256个不同的字符（例如英语ASCII码），则函数$isDigit$的结果本质上和一个256元组(False, ..., True, True, ... True, False, ...)同构。这个元组中对应数字字符的位置是True，其余是False。在$Char \to Bool$中的众多函数中，$isUpper$，$isLower$，$isWhitespace$等等分别对应一个特定的元组。例如$isUpper$对应的元组中，大写字符所在的位置上为True，其余为False。这样尽管有无穷多种方式来定义一个从$Char$到$Bool$的函数，但从结果上看，本质上只有$2^{256}$个不同的函数。也就是说$Char \to Bool$和256元组的布尔值集合$Bool^{Char}$同构。
 \end{example}
 
-现在我们把例子中的集合推进到无限集。在这一节的开头，我们说克里化后的函数$f: N \to (N \to N)$，是从自然数$N$到“函数对象”的函数。我们把函数对象记为$(\Rightarrow)$，则$f$的类型为$N \arrowto{f} (\Rightarrow)$。也就是从索引集$\{0, 1, ...\}$到$(\Rightarrow)$的映射，它是一个无穷长元组的集合，元组的每个值都是一个函数对象。记为$(\Rightarrow)^N$。
+现在我们把例子中的集合推进到无限集。在这一节的开头，我们说柯里化后的函数$f: N \to (N \to N)$，是从自然数$N$到“函数对象”的函数。我们把函数对象记为$(\Rightarrow)$，则$f$的类型为$N \arrowto{f} (\Rightarrow)$。也就是从索引集$\{0, 1, ...\}$到$(\Rightarrow)$的映射，它是一个无穷长元组的集合，元组的每个值都是一个函数对象。记为$(\Rightarrow)^N$。
 
 \index{apply}
 一般来说，我们把函数的集合$f : B \to C$记为$C^B$。从这个集合中取出一个函数$f \in C^B$，然后在从集合$B$中取出一个值$b \in B$，我们可以用一个名叫$apply$的函数将$f$应用到$b$上，从而得到一个$C$中的值$c = f(b)$。即\footnote{有些文献，例如\cite{PeterSmith2018}第111-112页, \cite{Wiki-Exponentials}使用$eval$，也就是求值（evaluation）作为名称，这里采用和\cite{Bird97}（第72页）一致的命名。这样和Lisp中的命名传统一致。}：
@@ -2119,7 +2119,7 @@ isDigit 'b' = False
 apply(f, b) = f(b)
 \]
 
-聪明的读者可能会问：符号$A$哪里去了？因为$A$还有别的用处。我们还要把克里化考虑进来。对于二元函数$g: A \times B \to C$，传入一个$A$中的值$a$后，就得到了一个克里化的函数$g(a, \bullet) : B \to C$。它是一个函数对象，属于$C^B$。这样，对于任何二元函数$A \times B \arrowto{g} C$，都存在唯一的一元函数$A \arrowto{\lambda g} C^B$，将$a \in A$送入$g(a, \bullet) : B \to C$中。我们称$\lambda g$为$g$的幂转换（exponential transpose）\footnote{有的文献中用$\bar{g}$来表示，根据第二章中对$\lambda$的介绍，以及关于丘奇出版商的小插曲，我认为用$\lambda g$更为传神，它表示$a \mapsto \lambda \bullet \cdot g(a, \bullet)$。}。并且，有这样的关系：
+聪明的读者可能会问：符号$A$哪里去了？因为$A$还有别的用处。我们还要把柯里化考虑进来。对于二元函数$g: A \times B \to C$，传入一个$A$中的值$a$后，就得到了一个柯里化的函数$g(a, \bullet) : B \to C$。它是一个函数对象，属于$C^B$。这样，对于任何二元函数$A \times B \arrowto{g} C$，都存在唯一的一元函数$A \arrowto{\lambda g} C^B$，将$a \in A$送入$g(a, \bullet) : B \to C$中。我们称$\lambda g$为$g$的幂转换（exponential transpose）\footnote{有的文献中用$\bar{g}$来表示，根据第二章中对$\lambda$的介绍，以及关于丘奇出版商的小插曲，我认为用$\lambda g$更为传神，它表示$a \mapsto \lambda \bullet \cdot g(a, \bullet)$。}。并且，有这样的关系：
 
 
 \[
@@ -2172,8 +2172,8 @@ C^B \times B \arrowto{apply} C
 
 \end{definition}
 
-\index{克里化}
-第二章中我们没有给出克里化的完整定义，现在利用幂对象，我们可以给出$curry$的定义了：
+\index{柯里化}
+第二章中我们没有给出柯里化的完整定义，现在利用幂对象，我们可以给出$curry$的定义了：
 
 \[
 \begin{array}{l}
@@ -2239,7 +2239,7 @@ curry\ apply = id
 \[
 (curry\ f) \circ g = curry(f \circ (g \times id))
 \]
-为克里化的融合律。请画出它的范畴图并证明它。}
+为柯里化的融合律。请画出它的范畴图并证明它。}
 \end{Exercise}
 
 \subsection{笛卡尔闭和对象算术}
@@ -2373,13 +2373,13 @@ A^{B + C} & = & \{ B + C \to A \} & \text{幂对象的定义} \\
   (A^B)^C = A^{B \times C}
 \]
 
-先看右侧，幂对象$A^{B \times C}$实际就是二元函数$B \times C \arrowto{g} A$的集合。交换积的次序$C \times B \arrowto{g \circ swap} A$，显然是一个自然同构（参见自然同构一节的$swap$自然变换）。如果克里化，就是$\{curry(g \circ swap)\} = \{C \to A^B\}$，再一次用幂对象表示就是$(A^B)^C$。
+先看右侧，幂对象$A^{B \times C}$实际就是二元函数$B \times C \arrowto{g} A$的集合。交换积的次序$C \times B \arrowto{g \circ swap} A$，显然是一个自然同构（参见自然同构一节的$swap$自然变换）。如果柯里化，就是$\{curry(g \circ swap)\} = \{C \to A^B\}$，再一次用幂对象表示就是$(A^B)^C$。
 
 \[
 \begin{array}{rcll}
 A^{B \times C} & = & \{B \times C \arrowto{g} A \}  & \text{幂对象的定义} \\
     & = & \{ C \times B \arrowto{g \circ swap} A \} & \text{自然同构} \\
-    & = & \{ C \arrowto{curry(g \circ swap)} A^B \} & \text{克里化后仍然同构} \\
+    & = & \{ C \arrowto{curry(g \circ swap)} A^B \} & \text{柯里化后仍然同构} \\
     & = & (A^B)^C & \text{幂对象} \\
 \end{array}
 \]
@@ -2983,7 +2983,7 @@ data Nat = Zero | Succ Nat
 (\mathbf{NatF} A \arrowto{f} A) \arrowto{cata} (\mathbf{Nat} \to A)
 \]
 
-所以（克里化的）$cata(f)$应该能够作用于$\mathbf{Nat}$的两种值$Zero$或者$Succ\ n$。我们可以根据这点定义出$cata$函数：
+所以（柯里化的）$cata(f)$应该能够作用于$\mathbf{Nat}$的两种值$Zero$或者$Succ\ n$。我们可以根据这点定义出$cata$函数：
 
 \[
 \begin{array}{l}
@@ -3372,7 +3372,7 @@ foldMap\ g = concat_M \circ fmap\ g
 \end{array}
 \]
 
-可是美中不足的是，对于任何传入$foldr$的二元组合函数$f : A \to B \to B$，如果$B$不是幺半群，我们仍然无法进行叠加。现在考虑$f$的克里化形式$f : A \to (B \to B)$，我们发现以箭头$B \to B$为对象，可以组成一个幺半群。其中单位元是恒等箭头$id$，而二元运算是函数组合。为此，我们把这种$B \to B$的箭头通过函子封装成一个类型（集合）：
+可是美中不足的是，对于任何传入$foldr$的二元组合函数$f : A \to B \to B$，如果$B$不是幺半群，我们仍然无法进行叠加。现在考虑$f$的柯里化形式$f : A \to (B \to B)$，我们发现以箭头$B \to B$为对象，可以组成一个幺半群。其中单位元是恒等箭头$id$，而二元运算是函数组合。为此，我们把这种$B \to B$的箭头通过函子封装成一个类型（集合）：
 
 \lstset{frame=none}
 \begin{lstlisting}[style=Haskell]
