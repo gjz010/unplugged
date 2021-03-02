@@ -55,7 +55,7 @@
 \usepackage{exercise} % for exercise
 \usepackage{stmaryrd} % for banana brackets
 \usepackage{pict2e}   % for customize lens brackets
-\usepackage{ulem}
+\usepackage[normalem]{ulem}
 
 \usepackage{import} % for nested input
 \usepackage{standalone}
@@ -123,8 +123,8 @@
 % The name emphasises its virtual, ideal, and humor
 
 \lstdefinelanguage{Bourbaki}{
-  morekeywords={abstract, case, catch, class,
-    and, or, not, data, void, to,
+  morekeywords={abstract, case, catch, class, struct,
+    and, or, not, data, void, to, loop, in,
     do, else, false, for, if, new, null, return,
     throw, true, try, type, val, var, while, yield },
   otherkeywords={=>,<-,<\%,<:,>:,\#,@},
@@ -287,6 +287,7 @@
   % 中文书籍设置
   % ====================================
   \renewcommand\ExerciseName{练习}
+  \renewcommand{\sectionautorefname}{节}
 }
 
 \DeclareOption{en}{
