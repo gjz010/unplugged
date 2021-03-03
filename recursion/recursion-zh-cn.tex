@@ -629,7 +629,7 @@ jars a b c = (x, y) where
 \Question{边长为1的正五边形，对角线的长度是多少？试证明图\ref{fig:pentagram}的五角星中的线段AC和AG是不可公度的。使用实数表示，它们的比值是什么？}
 \end{Exercise}
 
-\section{$\lambda$演算}
+\section{\texorpdfstring{$\lambda$}{λ}演算}
 
 如果进行计算的是如我们人类这样的智慧生命，也许不用深究递归的原理。我们只需要进行计算，发现递归时就在自己的思维中螺旋进入下一个层次。当递归终止时，就退回上一层。当人们思考如何用机器帮助我们进行计算时，这一问题才变得重要起来。二十世纪三十年代，当人们在研究可计算问题时，分别独立提出了一些计算模型。最著名的包括图灵提出的图灵机模型（1935年），丘奇（1932到1941年）和克莱尼（Stephen Kleene，1935年）提出的$\lambda$演算(希腊字母$\lambda$读作lambda)，埃尔布朗（Jacques Herbrand）和哥德尔（Kurt Gödel）提出的递归函数（1934年）等。
 
@@ -687,7 +687,7 @@ tail\ (cons\ a\ b) \mapsto b
 \end{array}
 \]
 
-\subsection{$\lambda$抽象}
+\subsection{\texorpdfstring{$\lambda$}{λ}抽象}
 \index{lambda抽象}
 我们前面简单介绍了$\lambda$符号的由来，所谓$\lambda$抽象，实际上是一种构建函数的方法。我们通过一个例子来了解$\lambda$抽象的各个组成部分。
 
@@ -712,7 +712,7 @@ $\uparrow$ & $\uparrow$ & $\uparrow$ & $\uparrow$ \\
         & | & $\lambda$ <变量> . <表达式> & $\lambda$抽象
 \end{tabular}
 
-\subsection{$\lambda$变换规则}
+\subsection{\texorpdfstring{$\lambda$}{λ}变换规则}
 
 考虑下面的$\lambda$表达式，如果对它化简，我们需要知道“全局”变量$y$的值。与之相对，我们不需要事先知道变量$x$的值，因为它以形参出现在函数中。
 
@@ -1010,7 +1010,7 @@ Y\ (f \mapsto (n \mapsto \textbf{if}\ n = 0\ \textbf{then}\ 1\ \textbf{else}\ n 
 
 用$\lambda$-抽象来定义$Y$的数学意义远大于其实现的意义。在真实的环境中，通常$Y$被内置实现为函数，可以直接将$Y\ H$转化为$H\ (Y\ H)$。
 
-\section{$\lambda$演算的意义}
+\section{\texorpdfstring{$\lambda$}{λ}演算的意义}
 
 $\lambda$演算的意义在于，它用一组简单的规则对复杂的计算过程进行了定义。将欧几里得算法用$\lambda$演算表示出来，再利用$\beta$规约进行计算。这样的实现可能比较复杂，但确实可行。它不仅可以表达欧几里得算法，而且适用于所有的可计算函数。图灵后来证明了$\lambda$演算与图灵机的等价性。$\lambda$演算的一大优势在于它仅仅使用了传统的数学概念——函数。因而在十九世纪30年代，$\lambda$演算被用来对数学进行形式化。然而在1935年，克莱尼-罗瑟悖论证明了最初的$\lambda$形式系统在逻辑上是不一致的。1936年，丘奇将$\lambda$演算模型中和纯计算有关的部分分离出来，称为的无类型$\lambda$演算。1940年时，丘奇又提出了一个弱化计算，但是逻辑自洽的形式系统，被称之为简单类型$\lambda$演算。
 

@@ -623,7 +623,7 @@ It's interesting that the incommensurable is defined by checking whether the Euc
 \Question{For the regular pentagon with side of 1, how long is the diagonal? Proof that in the pentagram shown in figure \ref{fig:pentagram}, the segment $AC$ and $AG$ are incommensurable. What's their ratio in real number?}
 \end{Exercise}
 
-\section{The $\lambda$ calculus}
+\section{The \texorpdfstring{$\lambda$}{λ} calculus}
 
 Recursion would not be a problem if performed by human. As the intelligent beings, we are able to enter the next level of computation when meet recursion, and return back to the upper level after that. However, it matters when instruct machine to compute. Several computation models were developed in 1930s independently. The most famous ones are Turing machine (1935 by Turing), $\lambda$-calculus (1932 - 1941 by Church, and 1935 by Stephen Kleene. The Greek letter $\lambda$ is pronounced as lambda), and recursive function (1934 by Jacques Herbrand and Kurt Gödel).
 
@@ -683,7 +683,7 @@ tail\ (cons\ a\ b) \mapsto b
 \end{array}
 \]
 
-\subsection{$\lambda$ abstraction}
+\subsection{\texorpdfstring{$\lambda$}{λ} abstraction}
 
 We told the story about how $\lambda$ symbol was introduced. $\lambda$ abstraction is a method to construct function. Let's use an example to understand every component in $\lambda$ abstraction.
 
@@ -710,7 +710,7 @@ We'll also use the equivalent $x \mapsto x + 1$ form for convenience. Note that 
         & | & $\lambda$ <variable> . <exp> & $\lambda$ abstraction
 \end{tabular}
 
-\subsection{$\lambda$ conversion rules}
+\subsection{\texorpdfstring{$\lambda$}{λ} conversion rules}
 
 When evaluate the below $\lambda$ expression, we need to know the value for the global variable $y$. On the other hand, we needn't know the value of variable $x$, because it appears as the formal parameter.
 
@@ -1004,7 +1004,7 @@ Y\ (f \mapsto (n \mapsto \textbf{if}\ n = 0\ \textbf{then}\ 1\ \textbf{else}\ n 
 
 It is more significant in mathematics than in practice to define $Y$ in $\lambda$ abstraction. $Y$ is often realized as a built-in function in real environment, which directly converts $Y\ H$ to $H\ (Y\ H)$.
 
-\section{The impact of $\lambda$ calculus}
+\section{The impact of \texorpdfstring{$\lambda$}{λ} calculus}
 
 The significant of the $\lambda$ calculus is that it models the complex computation process with a set of simple rules. Consider the way of representing the Euclidean algorithm in $\lambda$ expressions, then perform $\beta$-reduction to evaluate the result, it's feasible although looks complex from realization perspective. It does not limit to Euclidean algorithm, but can represents any computable functions. People later proved that $\lambda$ calculus and Turing machine are equivalent. One advantage of $\lambda$ calculus is that it only uses the traditional function concept in mathematics. People used it in 1930s to formalize the metamathematics. However, Kleene and Rosser proved that the original lambda calculus was inconsistent in 1935. Subsequently, in 1936 Church isolated and published just the portion relevant to computation, what is now called the untyped lambda calculus. In 1940, he also introduced a computationally weaker, but logically consistent system, known as the simply typed lambda calculus.
 
