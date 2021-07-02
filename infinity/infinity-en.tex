@@ -991,7 +991,14 @@ Because we assume all numbers in interval $(0, 1)$ are enumerated without one mi
 One may argue why can't add $b$ to the list of $a_0, a_1, a_2, ...$? Suppose after adding $b$ to the list, its position is the $m$-th number, we can construct another new number $c$, where its $m$-th digit does not equal to $b_m$. Hence we get another number not being included.
 
 \index{uncountable set}
-This proof is simple and easy. It tells a surprising result: the set of real numbers in interval $(0, 1)$ is uncountable! It is the first infinite set that people found more numerous than natural numbers\footnote{Courant and Robbins give another intuitive geometric proof in his popular book {\em What is mathematics}. Suppose the points in the unit line segment $(0, 1)$ can be enumerated as $a_1, a_2, a_3, ...$ We cover point $a_1$ with an interval of length 1/10, cover point $a_2$ with an interval of length 1/100, ... cover point $a_n$ with an interval of length $1/10^n$, and so on. Then the unit line segment (0, 1) will be completely covered (there can be overlaps) by these sub-intervals with lengths 1/10, 1/100, 1/1000, ... However, the total length of these sub-intervals, which is the sum of a geometric series, is $1/10 + 1/100 + 1/1000 + ... = 1/9 < 1$. It is impossible to cover the line segment of length 1 by an interval of total length 1/9, hence our assumption cannot hold, the points in the line segment are uncountable\cite{Courant1969}.}. As the next step, we establish a 1-to-1 correspondence: $y = \pi x - \dfrac{\pi}{2}$. It sends every real number in $(0, 1)$ to interval $(-\dfrac{\pi}{2}, \dfrac{\pi}{2})$ without any missing. We immediately conclude that the real numbers in this new interval are uncountable. As the final attack, we establish another 1-to-1 correspondence: $ y = tan(x)$. It sends every real number between $-\dfrac{\pi}{2}$ and $\dfrac{\pi}{2}$ to the infinite set of all real numbers without any missing\footnote{There is another geometric method to establish the 1-to-1 correspondence between the unit line segment to all real numbers. We bend the line segment to a semicircle of length 1, then draw an infinite line $L$ outside the circle. From any point $P$ in $L$, connect it with the centre of the circle, it must intersect with the arc at a point $Q$.}. With this proof, Cantor made his most important result: The set of real numbers is not countable. It is a higher level of infinity than countable sets. Cantor named it uncountable set, denoted as $C$.
+This proof is simple and easy. It tells a surprising result: the set of real numbers in interval $(0, 1)$ is uncountable! It is the first infinite set that people found more numerous than natural numbers\footnote{Courant and Robbins give another intuitive geometric proof in his popular book {\em What is mathematics}. Suppose the points in the unit line segment $(0, 1)$ can be enumerated as $a_1, a_2, a_3, ...$ We cover point $a_1$ with an interval of length 1/10, cover point $a_2$ with an interval of length 1/100, ... cover point $a_n$ with an interval of length $1/10^n$, and so on. Then the unit line segment (0, 1) will be completely covered (there can be overlaps) by these sub-intervals with lengths 1/10, 1/100, 1/1000, ... However, the total length of these sub-intervals, which is the sum of a geometric series, is $1/10 + 1/100 + 1/1000 + ... = 1/9 < 1$. It is impossible to cover the line segment of length 1 by an interval of total length 1/9, hence our assumption cannot hold, the points in the line segment are uncountable\cite{Courant1969}.}. As the next step, we establish a 1-to-1 correspondence: $y = \pi x - \dfrac{\pi}{2}$. It sends every real number in $(0, 1)$ to interval $(-\dfrac{\pi}{2}, \dfrac{\pi}{2})$ without any missing. We immediately conclude that the real numbers in this new interval are uncountable. As the final attack, we establish another 1-to-1 correspondence: $ y = tan(x)$. It sends every real number between $-\dfrac{\pi}{2}$ and $\dfrac{\pi}{2}$ to the infinite set of all real numbers without any missing\footnote{There is another geometric method to establish the 1-to-1 correspondence between the unit line segment to all real numbers. We bend the line segment to a semicircle of length 1, then draw an infinite line $L$ outside the circle. From any point $P$ in $L$, connect it with the centre of the circle, it must intersect with the arc at a point $Q$, as in figure \ref{fig:seg-to-line}.}. With this proof, Cantor made his most important result: The set of real numbers is not countable. It is a higher level of infinity than countable sets. Cantor named it uncountable set, denoted as $C$.
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.6]{img/seg-to-line.png}
+ \caption{map a semicircle of length 1 to all real numbers.}
+ \label{fig:seg-to-line}
+\end{figure}
 
 It reminds us the point in the line. In Euclid's {\em Elements}, a point is defined as ``A point is that which has no part.'', and line is consist of points. According to Hippasus's founding, there are irrational numbers in the line. In other words, rationals can't fully cover a line, while real numbers can. We'll give Dedekind cut in the next section to define a real number rigorously. The above proof tells us, the points in the unit line segment, the points in a line segment of any length, and the points in an infinite long line, which is the number axis, are all equinumerous. They are all uncountable sets. So as the points in circles of the same centre.
 
@@ -1428,7 +1435,7 @@ nup=2x2
 Jean-Pierre Luminet, Marc Lachièze-Rey. ``De l'infini - Horizons cosmiques, multivers et vide quantique''. DUNOD, 2016. ISBN: 9782100738380
 
 \bibitem{Noguchi2007}
-{\fontspec{\cnmainft}野口哲典. ``数学的センスが身につく練習帳''. ソフトバンククリエイティブ} 2007. ISBN: 9784797339314
+野口哲典. ``数学的センスが身につく練習帳''. ソフトバンククリエイティブ 2007. ISBN: 9784797339314
 
 \bibitem{Wikipedia-Googol}
 Wikipedia. ``Googol''. \url{https://en.wikipedia.org/wiki/Googol}
@@ -1437,7 +1444,7 @@ Wikipedia. ``Googol''. \url{https://en.wikipedia.org/wiki/Googol}
 Wikipedia. ``Zeno's Paradoxes''. \url{https://en.wikipedia.org/wiki/Zeno's_paradoxes}
 
 \bibitem{HanXueTao16}
-{\fontspec{\cnmainft}韩雪涛 ``数学悖论与三次数学危机''. 人民邮电出版社.} 2016, ISBN: 9787115430434
+韩雪涛 ``数学悖论与三次数学危机''. 人民邮电出版社. 2016, ISBN: 9787115430434
 
 \bibitem{Elements}
 Euclid, Thomas Heath (Translator) ``Euclid's Elements (The Thirteen Books) ''. Digireads.com Publishing (December 26, 2017). ISBN-13: 978-1420956474
@@ -1455,7 +1462,7 @@ Calvin C Clawson. ``The Mathematical Traveler, Exploring the Grand History of Nu
 Douglas R. Hofstadter ``Gödel, Escher, Bach: An Eternal Golden Braid''. Basic Books; Anniversary edition (February 5, 1999). ISBN: 978-0465026562
 
 \bibitem{GCH}
-{\fontspec{\cnmainft}张锦文，王雪生 ``连续统假设''. 世界数学名题欣赏丛书。辽宁教育出版社.} 1988. ISBN: 7-5382-0436-9/G$\cdot$445
+张锦文，王雪生 ``连续统假设''. 世界数学名题欣赏丛书。辽宁教育出版社. 1988. ISBN: 7-5382-0436-9/G$\cdot$445
 
 \bibitem{Courant1969}
 Richard Courant, Herbert Robbins, Reviewed by Ian Stewart. ``What Is Mathematics? An Elementary Approach to Ideas and Methods 2nd Edition''. Oxford University Press,  1996, ISBN: 978-0195105193.
