@@ -20,11 +20,11 @@
 
 \markboth{范畴}{编程中的数学}
 
-\chapter*{积和余积的唯一性}
+\chapter*{积与和的唯一性}
 \phantomsection  % so hyperref creates bookmarks
 \addcontentsline{toc}{chapter}{积和余积的唯一性}
 
-积和余积是唯一的么？下面的定理回答了这个问题：
+积与和是唯一的么？下面的定理回答了这个问题：
 
 \begin{lemma}
 对于范畴$\pmb{C}$中的一对对象$A$和$B$，令下图中的对象和箭头
@@ -101,7 +101,7 @@ P, Q \quad \quad \quad I, J
 \end{lemma}
 
 \begin{proof}
-我们只证明左侧积的部分，右侧余积部分的证明与此类似。给定$A, B$，对象$Q$和两个箭头$q_A, q_B$构成的楔形是一个积。我们把对象$P$和一对箭头$p_A, p_B$看成是另一个楔形。根据积的定义，存在唯一的媒介箭头$f$满足：
+我们只证明左侧积的部分，右侧和的证明与此类似。给定$A, B$，对象$Q$和两个箭头$q_A, q_B$构成的楔形是一个积。我们把对象$P$和一对箭头$p_A, p_B$看成是另一个楔形。根据积的定义，存在唯一的媒介箭头$f$满足：
 
 \[
 p_A = q_A \circ f \quad \text{和} \quad p_B = q_B \circ f
@@ -139,11 +139,11 @@ g \circ f = id_P \quad \quad \quad f \circ g = id_Q
 
 \end{proof}
 
-这一结论说明，如果两个对象存在积（或者余积）则它是唯一的。
+这一结论说明，如果两个对象存在积（或者和）则它是唯一的。
 
-\chapter*{集合的笛卡尔积和不相交并集构成积和余积的证明}
+\chapter*{集合的笛卡尔积和不相交并集构成积与和的证明}
 \phantomsection  % so hyperref creates bookmarks
-\addcontentsline{toc}{chapter}{集合的笛卡尔积和不相交并集构成积和余积的证明}
+\addcontentsline{toc}{chapter}{集合的笛卡尔积和不相交并集构成积与和的证明}
 
 \begin{proof}
 我们可以用构造法证明。首先证明左侧积的部分。$A \times B$的笛卡尔积是来自两个集合的元素对的全部组合
@@ -266,7 +266,7 @@ fst \circ h = p \quad \text{且} \quad snd \circ h = q
 
 所以$h(x) = (a, b) = m(x)$。这样就证明了$m$的唯一性。
 
-接下来，我们证明右侧的余积部分。不相交的并集$A+B$中的元素分为两类。一类是来自$A$中的元素$(a, 0)$，另一类是来自$B$中的元素$(b, 1)$。为此，我们定义两个特殊的箭头（函数）作为$i_A, i_B$：
+接下来，我们证明右侧和的部分。不相交的并集$A+B$中的元素分为两类。一类是来自$A$中的元素$(a, 0)$，另一类是来自$B$中的元素$(b, 1)$。为此，我们定义两个特殊的箭头（函数）作为$i_A, i_B$：
 
 \[
 \begin{cases}

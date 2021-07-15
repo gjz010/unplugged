@@ -784,9 +784,9 @@ fmap\ (f \circ g)\ (x:xs) & = & ((f \circ g)\ x):(fmap\ (f \circ g)\ xs) & \text
 \Question{回顾第二章中介绍的二叉树，请定义一个二叉树函子。}
 \end{Exercise}
 
-\section{积和余积}
+\section{积与和}
 
-在介绍更复杂的范畴和函子的例子之前，我们先了解一下积和余积的概念。这里的积是指范畴的积。为了容易理解，我们先从集合的积入手。两个集合$A$和$B$的笛卡尔积$A \times B$，是所有有序对$(a, b)$的集合。其中$a \in A, b \in B$。即：
+在介绍更复杂的范畴和函子的例子之前，我们先了解一下积与和的概念。这里的积是指范畴的积。为了容易理解，我们先从集合的积入手。两个集合$A$和$B$的笛卡尔积$A \times B$，是所有有序对$(a, b)$的集合。其中$a \in A, b \in B$。即：
 
 \[
 \{(a, b) | a \in A, b \in B\}
@@ -897,8 +897,8 @@ A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
 
 对比这两种构造我们发现它们是对偶的。如果把两张图旋转90度，把$A$画在上面，$B$画在下面，这样两个问题一个在左侧，一个在右侧。如同双手一样对称。我们后面会发现，这种现象在范畴的相关概念中很常见。甚至我们的宇宙中也充满了对称。这样当我们了解了一个事物，就对偶地了解了另一个事物。
 
-\subsection{积和余积的定义}
-\index{积} \index{余积}
+\subsection{积与和的定义}
+\index{积} \index{和}
 \begin{definition}
 对于范畴$\pmb{C}$中的一对对象$A$和$B$，一个
 
@@ -928,10 +928,10 @@ A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
 给定范畴中的一对对象$A$和$B$，可能有不止一个向左的或者向右的楔形。我们关心那个“最好”的楔形，它距离两个对象“最近”。本质上，我们在寻找一个泛性的（universal）楔形。这就引出了下面的（一对）定义：
 
 \begin{definition}
-对于范畴$\pmb{C}$中的一对对象$A$和$B$，一个
+对于范畴$\pmb{C}$中的一对对象$A$和$B$，一个\footnote{coproduct也译作余积}
 
 \[
-\text{积（product）} \quad \quad \quad \text{余积（coproduct）}
+\text{积（product）} \quad \quad \quad \text{和（coproduct）}
 \]
 
 是一个特殊的楔形：
@@ -1003,7 +1003,7 @@ A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
 其中箭头$m$叫做楔形$X$的媒介箭头（mediating arrow或者mediator）
 \end{definition}
 
-在这一定义中，积或者余积并不仅仅是一个对象$S$，而是一个对象加上一对箭头。其次，对于任意给定的$X$，媒介箭头$m$都是唯一的。所谓箭头可交换，我们用左侧的积来举例，是说箭头间的关系满足：
+在这一定义中，积或和并不仅仅是一个对象$S$，而是一个对象加上一对箭头。其次，对于任意给定的$X$，媒介箭头$m$都是唯一的。所谓箭头可交换，我们用左侧的积来举例，是说箭头间的关系满足：
 
 \[
 \begin{array}{l}
@@ -1043,7 +1043,7 @@ S \arrowto{m} S
 \end{tikzpicture}
 \end{center}
 
-在众多的楔形中，积和余积是特殊的——它们是泛性的，是“最接近”或者说是“最好”的一个楔形。并且可以证明（见书后附录）积和余积是唯一的。但是积和余积并不总是同时存在，甚至有可能都不存在。现在我们回过头来再看一下集合的情形。
+在众多的楔形中，积与和是特殊的——它们是泛性的，是“最接近”或者说是“最好”的一个楔形。并且可以证明（见书后附录）积与和是唯一的。但是积与和并不总是同时存在，甚至有可能都不存在。现在我们回过头来再看一下集合的情形。
 
 \begin{lemma}
 若$A, B$是两个集合，则它们的
@@ -1055,18 +1055,18 @@ S \arrowto{m} S
 在范畴$\pmb{Set}$中构成
 
 \begin{center}
-积 \quad \quad \quad 余积
+积 \quad \quad \quad 和
 \end{center}
 \end{lemma}
 
-详细的证明过程可以参考本书后面的附录。在一些编程环境中，积的确是通过二元组$(a, b)$以及函数$fst$和$snd$来实现的。但是，余积却是以单独的数据类型来实现的。
+详细的证明过程可以参考本书后面的附录。在一些编程环境中，积的确是通过二元组$(a, b)$以及函数$fst$和$snd$来实现的。但是，和却是以单独的数据类型来实现的。
 
 \lstset{frame = single}
 \begin{lstlisting}
 data Either a b = Left a | Right b
 \end{lstlisting}
 
-这样的好处是，我们不需要再通过0, 1这样的标记（tag）来了解一个\texttt{Either a b}的元素$x$究竟是来自\texttt{a}还是\texttt{b}。例如下面的例子代码使用模式匹配来决定如何处理余积的元素：
+这样的好处是，我们不需要再通过0, 1这样的标记（tag）来了解一个\texttt{Either a b}的元素$x$究竟是来自\texttt{a}还是\texttt{b}。例如下面的例子代码使用模式匹配来决定如何处理和的元素：
 
 \begin{lstlisting}
 either :: (a -> c) -> (b -> c) -> Either a b -> c
@@ -1075,17 +1075,17 @@ either _ g (Right y)    =  g y
 \end{lstlisting}
 \lstset{frame = none}
 
-举个具体的例子，假设我们有一个\texttt{Either String Int}类型的余积，它或者为一个字符串，例如\texttt{s = Left "hello"}，或者是一个整数，例如\texttt{n = Right 8}。如果是字符串，我们希望得到它的长度；如果是整数，我们希望将它加倍。为此我们可以这样调用$either$函数：\texttt{either length (*2) x}。
+举个具体的例子，假设我们有一个\texttt{Either String Int}类型的和，它或者为一个字符串，例如\texttt{s = Left "hello"}，或者是一个整数，例如\texttt{n = Right 8}。如果是字符串，我们希望得到它的长度；如果是整数，我们希望将它加倍。为此我们可以这样调用$either$函数：\texttt{either length (*2) x}。
 
-这样\texttt{either length (*2) s}会计算“hello”的长度，结果为5；而\texttt{either length (*2) n}会将8加倍，结果为16。有些编程环境中，使用联合体（union）或者枚举（enum）来部分实现余积的概念。方便起见，我们有时把集合余积的这两个箭头称为$left$和$right$。
+这样\texttt{either length (*2) s}会计算“hello”的长度，结果为5；而\texttt{either length (*2) n}会将8加倍，结果为16。有些编程环境中，使用联合体（union）或者枚举（enum）来部分实现和的概念。方便起见，我们有时把集合和的这两个箭头称为$left$和$right$。
 
-\subsection{积和余积的性质}
+\subsection{积与和的性质}
 
-在积和余积的定义中，对于任意的$X$和箭头组成的楔形，媒介箭头$m$是唯一确定的。媒介箭头在集合范畴$\pmb{Set}$中可以这样定义：
+在积与和的定义中，对于任意的$X$和箭头组成的楔形，媒介箭头$m$是唯一确定的。媒介箭头在集合范畴$\pmb{Set}$中可以这样定义：
 
 \[
 \begin{array}{ccc}
-\text{积} & & \text{余积} \\
+\text{积} & & \text{和} \\
 m(x) = (a, b) & \quad \quad &
 \begin{cases}
 m (a, 0) = p(a) \\
@@ -1159,7 +1159,7 @@ m \circ right = g
 \end{center}
 
 \index{消去律}
-通过这对范畴图，我们立即可以得到一些积和余积的性质。首先是\textbf{消去律}：
+通过这对范畴图，我们立即可以得到一些积与和的性质。首先是\textbf{消去律}：
 
 \[
 \begin{array}{rcl}
@@ -1176,7 +1176,7 @@ snd \circ \langle f, g \rangle = g
 \]
 
 \index{反射律}
-对于积，如果$f$恰好等于$fst$，而$g$恰好等于$snd$，我们就得到了上一小节中恒等箭头的特例；同样对于余积，如果$f$恰好等于$left$，而$g$恰好等于$right$，则媒介箭头也是恒等箭头。我们称这条性质为\textbf{反射律}（reflection law）：
+对于积，如果$f$恰好等于$fst$，而$g$恰好等于$snd$，我们就得到了上一小节中恒等箭头的特例；同样对于和，如果$f$恰好等于$left$，而$g$恰好等于$right$，则媒介箭头也是恒等箭头。我们称这条性质为\textbf{反射律}（reflection law）：
 
 \[
 id = \langle fst, snd \rangle \quad \quad \quad id = [left, right]
@@ -1186,7 +1186,7 @@ id = \langle fst, snd \rangle \quad \quad \quad id = [left, right]
 
 \[
 \begin{array}{ccc}
-  \text{积} & & \text{余积} \\
+  \text{积} & & \text{和} \\
   \begin{cases}
   h \circ \phi = f \\
   k \circ \phi = g
@@ -1210,7 +1210,7 @@ id = \langle fst, snd \rangle \quad \quad \quad id = [left, right]
 
 \[
 \begin{array}{ccc}
-  \text{积} & & \text{余积} \\
+  \text{积} & & \text{和} \\
   \begin{cases}
   h \circ \phi = f \\
   k \circ \phi = g
@@ -1235,7 +1235,7 @@ id = \langle fst, snd \rangle \quad \quad \quad id = [left, right]
 
 我们在后面会看到，这些性质和定律对于我们进行算法推导、程序化简、性能优化会起很重要的作用。
 
-\subsection{积和余积作为函子}
+\subsection{积与和作为函子}
 \index{二元函子}
 了解了范畴的积，就自然引出了\textbf{二元函子}（bifunctor或binary functor）的概念。我们此前介绍的函子，将一个范畴中的对象转换成另一个范畴中的对象，同时将一个范畴中箭头转成另一个范畴中的箭头。所谓二元函子，它作用于两个范畴$\pmb{C}$和$\pmb{D}$的积，也就是说它的源是$\pmb{C} \times \pmb{D}$。所以对于对象部分，二元函子的转换关系为：
 
@@ -1344,13 +1344,13 @@ bimap : (A \to C) \to (B \to D) \to (\mathbf{F}\ A \times B \to \mathbf{F}\ C \t
 
 也就是说，如果$\mathbf{F}$是一个二元函子，它把两个箭头$A \arrowto{g} C$、$B \arrowto{h} D$映射为从$\mathbf{F}\ A \times B$到$\mathbf{F}\ C \times D$的箭头。
 
-有了二元函子的概念，就可以定义积函子和余积函子了。我们用中缀的形式，将
+有了二元函子的概念，就可以定义积函子与和函子了。我们用中缀的形式，将
 
 \begin{center}
-积函子记为“$\times$” \quad \quad \quad 余积函子记为“$+$”
+积函子记为“$\times$” \quad \quad \quad 和函子记为“$+$”
 \end{center}
 
-对于两个对象，积函子将其映射为对象的积；余积函子将其映射为对象的余积。对于箭头，定义：
+对于两个对象，积函子将其映射为对象的积；和函子将其映射为对象的和。对于箭头，定义：
 
 \[
 f \times g = \langle f \circ fst, g \circ snd \rangle
@@ -1374,7 +1374,7 @@ f + g = [left \circ f, right \circ g]
     & id + id & \\
   = & [ left \circ id, right \circ id ] & \text{$+$的定义} \\
   = & [ left, right] & \text{$id$的性质} \\
-  = & id & \text{余积的反射律} \\
+  = & id & \text{和的反射律} \\
   \end{array}
 \end{array}
 \]
@@ -1383,7 +1383,7 @@ f + g = [left \circ f, right \circ g]
 
 \[
 \begin{array}{ccc}
-\text{积} & \quad \quad & \text{余积} \\
+\text{积} & \quad \quad & \text{和} \\
  (f \times g) \circ (f' \times g') = f \circ f' \times g \circ g'
  & \quad \quad &
  (f + g) \circ (f' + g') = f \circ f' + g \circ g'
@@ -1391,18 +1391,18 @@ f + g = [left \circ f, right \circ g]
 \]
 
 \index{吸收律}
-为此，我们先证明积和余积的\textbf{吸收律}（absorption law）：
+为此，我们先证明积与和的\textbf{吸收律}（absorption law）：
 
 \[
 \begin{array}{ccc}
-  \text{积的吸收律} & \quad \quad & \text{余积的吸收律} \\
+  \text{积的吸收律} & \quad \quad & \text{和的吸收律} \\
   (f \times g) \circ \langle p, q \rangle = \langle f \circ p, g \circ q \rangle
   & \quad \quad &
   [p, q] \circ (f + g) = [p \circ f, q \circ g]
 \end{array}
 \]
 
-我们只给出左手边积的情况，余积的情况与此对称，我们将其留作练习。
+我们只给出左手边积的情况，和的情况与此对称，我们将其留作练习。
 
 \[
 \begin{array}{cll}
@@ -1439,7 +1439,7 @@ bimap\ f\ g\ (x, y) = (f\ x,\ g\ y)
 \end{array}
 \]
 
-如果使用\texttt{Either}类型实现余积函子，则相应的$bimap$可以定义如下：
+如果使用\texttt{Either}类型实现和函子，则相应的$bimap$可以定义如下：
 
 \[
 \begin{array}{l}
@@ -1450,9 +1450,9 @@ bimap\ f\ g\ (right\ y) = right\ (g\ y)
 \]
 
 \begin{Exercise}
-\Question{考虑偏序集（poset）中的两个对象，它们的积是什么？余积是什么？}
+\Question{考虑偏序集（poset）中的两个对象，它们的积是什么？和是什么？}
 %\Question{考虑集合范畴$\pmb{Set}$，积中的两个箭头$fst, snd$是右消去（epic）的么？余积中的两个箭头$left, right$是左消去（monic）的么？}
-\Question{证明余积的吸收率，并验证余积函子的组合性质。}
+\Question{证明和的吸收率，并验证和函子的组合性质。}
 \end{Exercise}
 
 \section{自然变换}
@@ -2041,7 +2041,7 @@ one () = 1
 \subsection{幂}
 \index{幂} \index{exponential}
 
-起始对象和终止对象，相当于0和1，积和余积相当于$\times$和$+$，如果再有了指数（幂），我们就可以在范畴这个抽象层面中拥有和基本算术运算，甚至和多项式“同构”的强大工具。
+起始对象和终止对象，相当于0和1，积与和相当于$\times$和$+$，如果再有了指数（幂），我们就可以在范畴这个抽象层面中拥有和基本算术运算，甚至和多项式“同构”的强大工具。
 
 观察一个定义在自然数上二元函数$f(x, y) = z$，例如$f(x, y) = x^2 + 2y + 1$。其类型为$f: N \times N \to N$。我们会自然联想到，可以把这个类型写成:
 
@@ -2244,7 +2244,7 @@ curry\ apply = id
 
 \subsection{笛卡尔闭和对象算术}
 
-有了起始对象0，终止对象1，余积代表的加法，积代表的乘法，再加上幂对象代表的指数幂，我们终于拥有了在范畴上进行运算甚至构造抽象多项式的能力。但是且慢，让我们停下来看一下这样能跑多远。正如第三章开头我们讲到的，必须时刻关注一个问题：“某一种抽象的适用范围有多大？什么情况下这一抽象会失效？”
+有了起始对象0，终止对象1，和代表的加法，积代表的乘法，再加上幂对象代表的指数幂，我们终于拥有了在范畴上进行运算甚至构造抽象多项式的能力。但是且慢，让我们停下来看一下这样能跑多远。正如第三章开头我们讲到的，必须时刻关注一个问题：“某一种抽象的适用范围有多大？什么情况下这一抽象会失效？”
 
 \index{笛卡尔闭}
 并非所有的范畴都有起始或终止对象，也并非所有的范畴都有幂对象。如果一个范畴存在有限积、对于任何对象$A$和$B$都存在幂$A^B$，我们称这样的范畴为\textbf{笛卡尔闭}的（Cartesian closed）。一个笛卡尔闭范畴必须包含：
@@ -2258,13 +2258,13 @@ curry\ apply = id
 我们既可以把终止对象1，想象成一个对象的零次幂：$A^0 = 1$，也可以把它想象成零个对象的积。非常幸运的是，编程时我们所在的范畴——集合和全函数组成的范畴是笛卡尔闭的。一个笛卡尔闭范畴可以作为简单类型$\lambda$-演算（simply typed lambda calculus）的数学模型（见第二章），从而成为所有带有类型的编程语言的基础(\cite{Milewski2018}第148页)。
 
 \index{双笛卡尔闭（Bicartesian closed）}
-如果一个笛卡尔闭的范畴还同时支持终止对象的对偶——起始对象，和积的对偶——余积。并且支持积和余积的分配律，我们称其为\textbf{双笛卡尔闭}范畴（Bicartesian closed）：
+如果一个笛卡尔闭的范畴还同时支持终止对象的对偶——起始对象，和积的对偶——和。并且支持积与和的分配律，我们称其为\textbf{双笛卡尔闭}范畴（Bicartesian closed）：
 
 \begin{enumerate}
   \setcounter{enumi}{3}
   \item 一个起始对象（0）；
   \item 任何一对对象都有余积（$+$）；
-  \item 积可以从左右两侧分配到余积上：
+  \item 积可以从左右两侧分配到和上：
   \[
   \begin{array}{l}
   A \times (B + C) = A \times B + A \times C \\
@@ -2338,7 +2338,7 @@ A^1 & = & \{ 1 \to A \} & \text{幂对象的定义} \\
   A^{B + C} = A^B \times A^C
 \]
 
-幂对象$A^{B + C}$表示从余积$B + C$到$A$的箭头的集合$\{B + C \to A\}$。我们借助$\mathbf{Either}\ B\ C$来帮助我们思考\footnote{也可以用标记(tag)来推理：
+幂对象$A^{B + C}$表示从和$B + C$到$A$的箭头的集合$\{B + C \to A\}$。我们借助$\mathbf{Either}\ B\ C$来帮助我们思考\footnote{也可以用标记(tag)来推理：
 \[
 \begin{array}{l}
 f : B + C \to A \\
@@ -2406,7 +2406,7 @@ A^{B \times C} & = & \{B \times C \arrowto{g} A \}  & \text{幂对象的定义} 
 \label{sec:polynomial-functors}
 \index{多项式函子}
 
-以上介绍的在笛卡尔闭范畴上的算术主要是针对对象的。如果我们把函子考虑进来，会怎样呢？由于函子既作用于对象，也作用于箭头，这样就产生了多项式函子的概念。多项式函子是使用常函子（参见\hyperref[sec:functor:examples]{函子的例子中的“黑洞”函子}）、积函子和余积函子递归构造的。
+以上介绍的在笛卡尔闭范畴上的算术主要是针对对象的。如果我们把函子考虑进来，会怎样呢？由于函子既作用于对象，也作用于箭头，这样就产生了多项式函子的概念。多项式函子是使用常函子（参见\hyperref[sec:functor:examples]{函子的例子中的“黑洞”函子}）、积函子与和函子递归构造的。
 
 \begin{itemize}
   \item 恒等函子$id$和常函子$\mathbf{K}_A$是多项式函子；
@@ -2513,20 +2513,20 @@ M^{M \times M} \times M^1 = M^{M \times M + 1}
 
 \[
 \begin{array}{rcll}
-\alpha : 1 + M \times M & \longrightarrow & M & \text{和（余积）}\\
+\alpha : 1 + M \times M & \longrightarrow & M & \text{和}\\
 1 & \longmapsto & 1 & \text{单位元}  \\
 (x, y) & \longmapsto & x \oplus y & \text{二元运算}
 \end{array}
 \]
 
-通过余积用和来表示这种关系就是$\alpha = e + m$，用多项式函子来表示就是$\mathbf{F} M = 1 + M \times M$
+通过和来表示这种关系就是$\alpha = e + m$，用多项式函子来表示就是$\mathbf{F} M = 1 + M \times M$
 
 总结一下，对于幺半群这个例子，幺半群上的代数结构由三部分组成：
 
 \begin{enumerate}
   \item 对象$M$，就是用于携带幺半群上代数结构的集合，叫做\textbf{携带对象}（carrier object）；
   \item 函子$\mathbf{F}$，定义了幺半群上的代数运算。是一个多项式函子$\mathbf{F} M = 1 + M \times M$；
-  \item 箭头$\mathbf{F} M \arrowto{\alpha} M$，它是单位元箭头$e$和二元运算箭头$m$的和（余积），$\alpha = e + m$。
+  \item 箭头$\mathbf{F} M \arrowto{\alpha} M$，它是单位元箭头$e$和二元运算箭头$m$的和，$\alpha = e + m$。
 \end{enumerate}
 
 我们称这样定义了一个幺半群的$F$-代数$(M, \alpha)$。
@@ -2624,11 +2624,11 @@ i (x) = x^{-1}
 
 这样，任何群都可以用一个四元组$(G, m, e, i)$表示。
 
-第三步，利用余积求$m, e, i$的和$\alpha = e + m + i$，通过多项式函子$\mathbf{F} A = 1 + A + A \times A$，并令$A = G$，描述群$G$上的代数运算。
+第三步，利用和求$m, e, i$的和$\alpha = e + m + i$，通过多项式函子$\mathbf{F} A = 1 + A + A \times A$，并令$A = G$，描述群$G$上的代数运算。
 
 \[
 \begin{array}{rcll}
-\alpha : 1 + A + A \times A & \longrightarrow & A & \text{和（余积）}\\
+\alpha : 1 + A + A \times A & \longrightarrow & A & \text{和}\\
 1 & \longmapsto & 1 & \text{单位元}  \\
 x & \longmapsto & x^{-1} & \text{逆元} \\
 (x, y) & \longmapsto & x \cdot y & \text{二元运算} \\
@@ -2815,7 +2815,7 @@ eval : \mathbf{NatF}^n Int \to Int \\
 %% \end{cases}
 %% \]
 
-%% 它们的余积$\alpha = [zero, succ] = zero + succ$，也就是说：
+%% 它们的和$\alpha = [zero, succ] = zero + succ$，也就是说：
 
 %% \[
 %% \begin{array}{l}
@@ -2835,7 +2835,7 @@ fib\ (SuccF\ (m, n)) = (n, m + n) \\
 \end{array}
 \]
 
-这是一种紧凑的定义。我们可以把它也写成和（余积）的形式$fib = [start, next]$，其中$start$总返回$(1, 1)$，而$next(m, n) = (n, m + n)$。
+这是一种紧凑的定义。我们可以把它也写成和的形式$fib = [start, next]$，其中$start$总返回$(1, 1)$，而$next(m, n) = (n, m + n)$。
 
 如果范畴$\pmb{NatF}$有起始对象0，我们把它表示为二元组$(I, i)$。起始对象到任何对象$(A, \alpha)$都有唯一的箭头。即存在箭头$I \arrowto{f} A$，使得下面的范畴图可交换\footnote{起始的英文是initial，所以选择符号$(I, i)$代表起始对象中的集合$I$和箭头$i$}：
 
@@ -3049,8 +3049,8 @@ fibAt = fst \circ toFib \circ fromInt
 \begin{array}{rll}
             & h \circ [zero, succ] = [c, f] \circ \mathbf{NatF}(h) & \text{可交换} \\
 \Rightarrow & h \circ [zero, succ] = [c, f] \circ (id + h) & \text{多项式函子} \\
-\Rightarrow & h \circ [zero, succ] = [c \circ id, f \circ h] & \text{右侧用余积的吸收律} \\
-\Rightarrow & [h \circ zero, h \circ succ] = [c, f \circ h] & \text{左侧用余积的融合律} \\
+\Rightarrow & h \circ [zero, succ] = [c \circ id, f \circ h] & \text{右侧用和的吸收律} \\
+\Rightarrow & [h \circ zero, h \circ succ] = [c, f \circ h] & \text{左侧用和的融合律} \\
 \Rightarrow &
   \begin{cases}
     h \circ zero = c \\
@@ -3189,8 +3189,8 @@ sum = cata sumAlg where
 \begin{array}{rll}
             & h \circ [nil, cons] = [c, f] \circ (\mathbf{ListF}\ A)(h) & \text{可交换} \\
 \Rightarrow & h \circ [nil, cons] = [c, f] \circ (id + (id \times h)) & \text{多项式函子} \\
-\Rightarrow & h \circ [nil, cons] = [c \circ id, f \circ (id \times h)] & \text{右侧用余积的吸收律} \\
-\Rightarrow & [h \circ nil, h \circ cons] = [c, f \circ (id \times h)] & \text{左侧用余积的融合律} \\
+\Rightarrow & h \circ [nil, cons] = [c \circ id, f \circ (id \times h)] & \text{右侧用和的吸收律} \\
+\Rightarrow & [h \circ nil, h \circ cons] = [c, f \circ (id \times h)] & \text{左侧用和的融合律} \\
 \Rightarrow &
   \begin{cases}
     h \circ nil = c \\
@@ -3278,8 +3278,8 @@ sum = cata \circ sumAlg \\
 \begin{array}{rll}
             & h \circ [nil, branch] = [c, f] \circ (\mathbf{TreeF}\ A)(h) & \text{可交换} \\
 \Rightarrow & h \circ [nil, branch] = [c, f] \circ (id + (id_A \times h \times h)) & \text{多项式函子} \\
-\Rightarrow & h \circ [nil, branch] = [c \circ id, f \circ (id_A \times h \times h)] & \text{右侧用余积的吸收律} \\
-\Rightarrow & [h \circ nil, h \circ branch] = [c, f \circ (id_A \times h \times h)] & \text{左侧用余积的融合律} \\
+\Rightarrow & h \circ [nil, branch] = [c \circ id, f \circ (id_A \times h \times h)] & \text{右侧用和的吸收律} \\
+\Rightarrow & [h \circ nil, h \circ branch] = [c, f \circ (id_A \times h \times h)] & \text{左侧用和的融合律} \\
 \Rightarrow &
   \begin{cases}
     h \circ nil = c \\
@@ -3312,7 +3312,7 @@ foldt\ c\ h\ (Br\ k\ l\ r) = h(k, foldt\ c\ h\ l, foldt\ c\ h\ r) \\
 
 \section{小节}
 
-本章介绍了范畴论中最基本的概念，包括范畴、函子、自然变换。并且还介绍了积和余积、起始对象和终止对象、幂以及F-代数这些工具来构造较为复杂的代数结构。作为本章的结尾，我们来解读一段用范畴语言实现的通用叠加操作\cite{Haskell-foldable}。通常我们认为列表的叠加操作可以这样写：
+本章介绍了范畴论中最基本的概念，包括范畴、函子、自然变换。并且还介绍了积与和、起始对象和终止对象、幂以及F-代数这些工具来构造较为复杂的代数结构。作为本章的结尾，我们来解读一段用范畴语言实现的通用叠加操作\cite{Haskell-foldable}。通常我们认为列表的叠加操作可以这样写：
 
 \lstset{language=Haskell, frame=single}
  \begin{lstlisting}
@@ -3440,7 +3440,7 @@ foldr\ f\ z\ xs
 
 \section{扩展阅读}
 
-限于篇幅，我们不可能仅仅在一章中完成范畴论的介绍。本章的内容不过是冰山的一个小角。范畴论的核心精神是抽象。初始对象和终止对象，积和余积这些对偶的概念，它们本质上可以进一步抽象到更高层次的对偶——极限（limits）和余极限（colimits）。我们没能介绍伴随（Adjunction）的概念，没能介绍米田定理（Yoneda lemma），也没有能够解读单子。我希望这一章能够起到抛砖引玉的作用，引导读者去阅读和了解更多的内容。范畴论的创始人之一麦克兰恩的编写的教材\cite{Mac-Lane-1998}是这个领域的经典。其目标读者是数学家，普通读者读起来有些艰深。西蒙森的《范畴论引论》\cite{Simmons2011}和史密斯的\cite{PeterSmith2018}更适合初学者。对于有编程背景的读者，迈尔维斯基的《程序员的范畴论》\cite{Milewski2018}是本不错的参考书。里面配有很多Haskell示例代码和一些C++的类比实现。但是这本书仅仅在集合全函数范畴（确切地说是Hask范畴）内讨论。伯德的《编程中的代数》\cite{Bird97}更加全面地介绍了编程中的范畴原理。
+限于篇幅，我们不可能仅仅在一章中完成范畴论的介绍。本章的内容不过是冰山的一个小角。范畴论的核心精神是抽象。初始对象和终止对象，积与和这些对偶的概念，它们本质上可以进一步抽象到更高层次的对偶——极限（limits）和余极限（colimits）。我们没能介绍伴随（Adjunction）的概念，没能介绍米田定理（Yoneda lemma），也没有能够解读单子。我希望这一章能够起到抛砖引玉的作用，引导读者去阅读和了解更多的内容。范畴论的创始人之一麦克兰恩的编写的教材\cite{Mac-Lane-1998}是这个领域的经典。其目标读者是数学家，普通读者读起来有些艰深。西蒙森的《范畴论引论》\cite{Simmons2011}和史密斯的\cite{PeterSmith2018}更适合初学者。对于有编程背景的读者，迈尔维斯基的《程序员的范畴论》\cite{Milewski2018}是本不错的参考书。里面配有很多Haskell示例代码和一些C++的类比实现。但是这本书仅仅在集合全函数范畴（确切地说是Hask范畴）内讨论。伯德的《编程中的代数》\cite{Bird97}更加全面地介绍了编程中的范畴原理。
 
 % limits/colimits, 伴随，米田定理
 
@@ -3480,7 +3480,7 @@ class Bifunctor f where
   bimap :: (a -> c) -> (b -> d) -> f a b -> f c d
 \end{lstlisting}
 
-积函子和余积函子的定义：
+积函子与和函子的定义：
 
 \begin{lstlisting}
 instance Bifunctor (,) where
