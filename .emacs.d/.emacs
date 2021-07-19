@@ -3,6 +3,8 @@
 
 (setq debug-on-error nil)
 
+(setq explicit-shell-file-name "/bin/bash")
+
 ;;==========================================
 ;;  start the emacsserver that listens to emacsclietn
 ;; (server-start)
@@ -113,7 +115,7 @@
 
 ;; ========================================
 ;;    FlySpell
-(flyspell-mode +1)
+(flyspell-mode 1)
 (define-key flyspell-mode-map (kbd "C-;") #'flyspell-popup-correct)
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
@@ -182,7 +184,7 @@
       nil t))
 
 (defun qiang-make-font-string (font-name font-size)
-  (if (and (stringp font-size)
+  (if (and (string-or-null-p font-size)
            (equal ":" (string (elt font-size 0))))
       (format "%s%s" font-name font-size)
     (format "%s-%s" font-name font-size)))
@@ -199,12 +201,12 @@
                                   ("微软雅黑" . ,chinese-fonts-scale)
                                   ("STSong" . ,chinese-fonts-scale)
                                   ("WenQuanYi Zen Hei" . ,chinese-fonts-scale)))
-  (require 'cl)                         ; for find if
+  (require 'cl-lib)                         ; for find if
   (setq bhj-english-font-size english-font-size)
   (let ((en-font (qiang-make-font-string
-                  (find-if #'qiang-font-existsp english-fonts)
+                  (cl-find-if #'qiang-font-existsp english-fonts)
                   english-font-size))
-        (zh-font (font-spec :family (find-if #'qiang-font-existsp chinese-fonts))))
+        (zh-font (font-spec :family (cl-find-if #'qiang-font-existsp chinese-fonts))))
 
     ;; Set the default English font
     (set-face-attribute
@@ -226,7 +228,8 @@
   (when (and (boundp 'global-emojify-mode)
              global-emojify-mode)
     (global-emojify-mode 1))
-  (shell-command-to-string "sawfish-client -e '(maximize-window (input-focus))'&"))
+  ;;(shell-command-to-string "sawfish-client -e '(maximize-window (input-focus))'&")
+  )
 
 
 (defvar bhj-english-fonts '("Monaco" "Consolas" "DejaVu Sans Mono" "Monospace" "Courier New"))
