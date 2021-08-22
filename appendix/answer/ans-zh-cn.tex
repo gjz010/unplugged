@@ -798,7 +798,7 @@ tail\ (cons\ p\ q) & = & (c \mapsto c\ (a \mapsto b \mapsto b))\ (cons\ p\ q) \\
                    & \xrightarrow{\beta} & (cons\ p\ q)\ (a \mapsto b \mapsto b) \\
                    & = & ((a \mapsto b \mapsto f \mapsto f\ a\ b)\ p\ q)\ (a \mapsto b \mapsto b) \\
                    & \xrightarrow{\beta} & ((b \mapsto f \mapsto f\ p\ b)\ q)\ (a \mapsto b \mapsto b) \\
-                   & \xrightarrow{\beta} & (f \mapsto f \mapsto f\ p\ q)\ (a \mapsto b \mapsto b) \\
+                   & \xrightarrow{\beta} & (f \mapsto f\ p\ q)\ (a \mapsto b \mapsto b) \\
                    & \xrightarrow{\beta} & (a \mapsto b \mapsto b)\ p\ q \\
                    & \xrightarrow{\beta} & (b \mapsto b)\ q \\
                    & \xrightarrow{\beta} & q
