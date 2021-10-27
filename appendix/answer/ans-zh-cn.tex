@@ -152,7 +152,7 @@ def play():
         board(x, o)
         while True:
             i = int(input("[1..9]==>"))
-            if i not in MAGIC_SQUARE or MAGIC_SQUARE[i-1] in x or
+            if i not in MAGIC_SQUARE or MAGIC_SQUARE[i-1] in x or \
                MAGIC_SQUARE[i-1] in o:
                 print "invalid move"
             else:
