@@ -158,7 +158,9 @@ def play():
             else:
                 x = [MAGIC_SQUARE[i-1]] + x
                 break
-        o = [findbest(x, o, False)] + o
+        best=findbest(x, o, False)
+        if best!=0:
+            o = [best] + o
     board(x, o)
 \end{lstlisting}
 
