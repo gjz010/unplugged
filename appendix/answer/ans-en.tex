@@ -83,7 +83,7 @@ def eval(x, o):
     return 0
 
 def finished(x, o):
-    return len(x) + len(o) == 9
+    return len(x) + len(o) >= 9
 \end{lstlisting}
 
 For any game state, we let the program explore ahead till an end state (one side wins, or draw). The explore method, is to exhaustive cover all unoccupied cells, then turn to the opponent player, consider what is the best move to beat the other. For all candidate moves, select the highest score for player $X$, or select the lowest score for player $O$.
@@ -158,9 +158,7 @@ def play():
             else:
                 x = [MAGIC_SQUARE[i-1]] + x
                 break
-        best=findbest(x, o, False)
-        if best!=0:
-            o = [best] + o
+        o = [findbest(x, o, False)] + o
     board(x, o)
 \end{lstlisting}
 

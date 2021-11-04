@@ -39,7 +39,7 @@ def win(s):
     return False
 
 def finished(x, o):
-    return len(x) + len(o) == 9
+    return len(x) + len(o) >= 9
 
 def minmax(x, o, depth, maximize):
     score = eval(x, o)
